@@ -1,0 +1,39 @@
+data:
+  trip_glob: "data/raw/trips/*.csv"
+  weather_raw: "data/raw/weather/ohare_daily.csv"
+  weather_station: "USW00094846"
+  weather_start: "2023-05-01"
+  weather_end: "2023-09-30"
+  weather_types: "PRCP,SNOW,SNWD,TMAX,TMIN,AWND"
+
+paths:
+  logs: "output/logs"
+  tables: "output/tables"
+  figures: "output/figures"
+  interim: "data/interim"
+  processed: "data/processed"
+
+inspect:
+  max_datetime_parse_fail_rate: 0.001
+  max_missing_ride_id_rate: 0.0
+  max_ride_id_duplicate_rate: 0.0
+  max_negative_duration_rate: 0.01      # 1% 作为大规模异常警报；157 条远低于
+  max_zero_duration_rate: 0.01
+  max_over_24h_rate: 0.01
+  max_station_id_missing_rate: 0.05     # 仅用于非电单车分层检查
+  max_coord_missing_rate: 0.05
+  max_coord_out_of_bound_rate: 0.01
+  month_match_warn_rate: 0.95
+  month_match_fail_rate: 0.80
+  
+clean:
+  min_duration_min: 1
+  max_duration_min: 180
+  lat_min: 41.6
+  lat_max: 42.1
+  lng_min: -87.95
+  lng_max: -87.5
+
+analysis:
+  rain_threshold_mm: 0.1
+  member_group_quantile: 0.5
